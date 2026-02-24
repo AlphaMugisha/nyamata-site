@@ -1,29 +1,41 @@
-<footer id="visit" class="footer-contact">
-        <div class="container contact-grid">
-            <div class="contact-form">
-                <h3 style="margin-bottom: 20px; color: var(--gold);">CONTACT</h3>
-                <form action="contact.php" method="POST" id="churchContact">
-                    <div style="display: flex; gap: 10px;">
-                        <input type="text" name="name" placeholder="Name" required>
-                        <input type="email" name="email" placeholder="Email" required>
-                    </div>
-                    <textarea name="message" rows="5" placeholder="Your Message..." required style="margin-top:15px"></textarea>
-                    <button type="submit" class="btn btn-gold" style="margin-top:15px">Send Message</button>
-                </form>
+<?php $current_page = basename($_SERVER['PHP_SELF']); ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nyamata SDA Church | Welcome Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="no-scroll">
+
+    <div id="preloader" class="preloader">
+        <div class="preloader-content">
+            <div class="logo-float-wrapper">
+                <div class="preloader-logo">⛪</div>
             </div>
-            <div class="info-box">
-                <h3 style="margin-bottom: 20px;">VISIT US</h3>
-                <p>📍 Nyamata, Rwanda</p>
-                <p>📞 +250 788 000 000</p>
-                <p>✉️ info@nyamatasda.org</p>
-                <a href="https://maps.google.com/?q=Nyamata+SDA+Church+Rwanda" target="_blank" class="btn btn-blue-outline" style="margin-top: 15px; border-color: white; color: white; display: inline-block;">Get Directions</a>
-                <div style="margin-top: 20px; display: flex; gap: 15px;">
-                    <span style="cursor: pointer;">FB</span> <span style="cursor: pointer;">IG</span> <span style="cursor: pointer;">YT</span>
+            <div class="preloader-text">Nyamata SDA Church</div>
+            <div class="preloader-progress-wrapper">
+                <div class="preloader-progress-track">
+                    <div class="preloader-progress-fill"></div>
                 </div>
             </div>
         </div>
-    </footer>
+    </div>
 
-    <script src="script.js"></script>
-</body>
-</html>
+    <nav class="navbar">
+        <div class="container nav-wrapper">
+            <a href="index.php" class="logo">⛪ Nyamata SDA Church</a>
+            <ul class="nav-links">
+                <li><a href="ministries.php" class="<?php echo ($current_page == 'ministries.php') ? 'active' : ''; ?>">Ministries</a></li>
+                <li><a href="sermons.php" class="<?php echo ($current_page == 'sermons.php') ? 'active' : ''; ?>">Sermons</a></li>
+                <li><a href="events.php" class="<?php echo ($current_page == 'events.php') ? 'active' : ''; ?>">Events</a></li>
+                <li><a href="contact.php" class="<?php echo ($current_page == 'contact.php') ? 'active' : ''; ?>">Contact</a></li>
+            </ul>
+            <div class="nav-btns">
+                <a href="events.php#visit" class="btn btn-gold">Plan A Visit</a>
+                <a href="sermons.php" class="btn btn-blue-outline">Watch Sermons</a>
+            </div>
+        </div>
+    </nav>
