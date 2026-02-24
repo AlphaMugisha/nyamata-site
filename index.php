@@ -2,10 +2,12 @@
 
 <header id="home" class="hero">
     <video autoplay loop muted playsinline class="hero-video" id="heroVideo">
-        <source src="assets/hero-worship.mp4" type="video/mp4">
+        <source src="video.mp4" type="video/mp4">
         <img src="https://images.unsplash.com/photo-1510590337019-5ef8d3d32116?auto=format&fit=crop&q=80&w=1500" alt="Worship Background">
     </video>
+    
     <div class="hero-overlay"></div>
+    
     <div class="hero-content">
         <h1 class="hero-anim-text">WELCOME HOME</h1>
         <p class="hero-anim-text">Join us this Sabbath</p>
