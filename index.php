@@ -11,59 +11,44 @@
         opacity: 1;
         transform: translateY(0);
     }
-    /* Fix for Hero Section and Invisible Text */
-.hero {
-    position: relative;
-    height: 100vh;
-    min-height: 600px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    color: white;
-}
-
-.hero-video {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    transform: translate(-50%, -50%);
-    z-index: 1; /* Video at the back */
-    object-fit: cover;
-}
-
+/* Branded Hero Overlay */
 .hero-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Darkens video so white text is readable */
-    z-index: 2; /* Overlay in the middle */
+    /* A deep navy gradient that matches your Blue buttons */
+    background: linear-gradient(135deg, rgba(29, 53, 87, 0.7) 0%, rgba(10, 25, 47, 0.6) 100%);
+    z-index: 2;
 }
 
-.hero-content {
-    position: relative;
-    z-index: 3; /* Content at the very front */
-    text-align: center;
-}
-
-.hero-anim-text {
-    opacity: 1 !important; /* Forces visibility */
+/* Branded Text Styling */
+.hero-content h1.hero-anim-text {
+    color: #ffffff;
+    font-size: 4rem;
+    font-weight: 800;
+    text-shadow: 2px 4px 10px rgba(0, 0, 0, 0.3);
+    opacity: 1 !important;
     visibility: visible !important;
-    display: block;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
+.hero-content p.hero-anim-text {
+    color: var(--gold); /* Uses your existing Gold color variable */
+    font-size: 1.5rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Button positioning fix */
 .hero-actions {
-    margin-top: 20px;
-    display: flex;
-    gap: 15px;
-    justify-content: center;
+    position: relative;
+    z-index: 4;
+    margin-top: 30px;
 }
 </style>
 
