@@ -1,17 +1,59 @@
-<style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nyamata SDA Church</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        :root {
+            --gold: #d4af37;
+            --deep-blue: #0a2540;
+        }
+
         .footer-col h3 { color: var(--gold); margin-bottom: 20px; font-size: 1.2rem; }
         .footer-links { list-style: none; padding: 0; }
         .footer-links li { margin-bottom: 10px; }
         .footer-links a { color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.3s; font-size: 0.95rem; }
         .footer-links a:hover { color: var(--gold); }
         .footer-text { color: rgba(255,255,255,0.8); font-size: 0.95rem; margin-bottom: 10px; }
-        .social-icons { display: flex; gap: 15px; margin-top: 20px; }
-        .social-icon { width: 35px; height: 35px; border-radius: 50%; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; transition: background 0.3s; font-weight: 600; font-size: 0.8rem;}
-        .social-icon:hover { background: var(--gold); }
-        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); margin-top: 50px; padding-top: 25px; text-align: center; color: rgba(255,255,255,0.6); font-size: 0.9rem; }
-    </style>
+        
+        /* Social Icons Container */
+        .social-icons { display: flex; gap: 12px; margin-top: 20px; }
+        
+        /* Social Icon Styling */
+        .social-icon { 
+            width: 40px; 
+            height: 40px; 
+            border-radius: 50%; 
+            background: rgba(255,255,255,0.1); 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            color: white; 
+            text-decoration: none; 
+            transition: all 0.3s ease; 
+            font-size: 1.1rem; /* Adjusted for icon visibility */
+        }
 
-    <footer class="footer-contact" style="padding: 70px 0 30px 0; background: linear-gradient(135deg, var(--deep-blue) 0%, #07192b 100%);">
+        /* Individual Hover Colors */
+        .social-icon:hover { background: var(--gold); transform: translateY(-3px); color: #fff; }
+        .fa-facebook-f:hover { color: #1877F2; }
+        .fa-instagram:hover { color: #E4405F; }
+        .fa-youtube:hover { color: #CD201F; }
+        .fa-whatsapp:hover { color: #25D366; }
+
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); margin-top: 50px; padding-top: 25px; text-align: center; color: rgba(255,255,255,0.6); font-size: 0.9rem; }
+        
+        /* Basic Grid Layout */
+        .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    </style>
+</head>
+<body>
+
+    <footer class="footer-contact" style="padding: 70px 0 30px 0; background: linear-gradient(135deg, var(--deep-blue) 0%, #07192b 100%); font-family: sans-serif; color: white;">
         <div class="container grid-4">
             
             <div class="footer-col reveal-base">
@@ -48,9 +90,10 @@
                 <p class="footer-text">✉️ info@nyamatasda.org</p>
                 
                 <div class="social-icons">
-                    <a href="#" class="social-icon">FB</a>
-                    <a href="#" class="social-icon">YT</a>
-                    <a href="#" class="social-icon">WA</a>
+                    <a href="" class="social-icon" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/ububyutsechoir/?hl=en" class="social-icon" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon" title="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="social-icon" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                 </div>
             </div>
 

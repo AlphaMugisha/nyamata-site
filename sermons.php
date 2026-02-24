@@ -63,9 +63,24 @@
             </div>
         </div>
         
-        <div style="text-align: center; margin-top: 50px;">
-            <button class="btn btn-gold">Load Sermon Archive</button>
-        </div>
+<div style="text-align: center; margin-top: 50px;">
+    <a href="contact.php" style="
+        display: inline-block;
+        padding: 30px 50px;
+        border: 2px solid #d4af37; /* gold-ish border */
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        background-color: #fff;
+        text-decoration: none;
+        color: #333;
+        font-size: 18px;
+        font-weight: bold;
+        transition: transform 0.2s, box-shadow 0.2s;
+    " onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 15px rgba(0,0,0,0.3)';"
+       onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 10px rgba(0,0,0,0.2)';">
+        Load Sermon Archive
+    </a>
+</div>
     </div>
 </section>
 
