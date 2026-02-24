@@ -1,7 +1,23 @@
-document.addEventListener('DOMContentLoaded', () => {
+// Ensure script waits for full page load as requested
+window.addEventListener('load', () => {
     
-    // --- 1. Video Autoplay Fallback ---
-    // Browsers sometimes block autoplay videos. This forces play on load.
+    // --- 1. Preloader Logic (5 Second Duration) ---
+    setTimeout(() => {
+        const preloader = document.getElementById('preloader');
+        
+        // Hide preloader
+        preloader.classList.add('hide');
+        
+        // Enable scrolling and add 'loaded' class
+        document.body.classList.remove('no-scroll');
+        document.body.classList.add('loaded');
+        
+        // Trigger initial hero animations *after* the preloader reveals the site
+        triggerHeroAnimations();
+        
+    }, 5000); // Exactly 5 seconds
+
+    // --- 2. Video Autoplay Fallback ---
     const heroVideo = document.getElementById('heroVideo');
     if (heroVideo) {
         heroVideo.play().catch(error => {
@@ -9,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 2. Navbar Scroll Transition ---
+    // --- 3. Navbar Scroll Transition ---
     const nav = document.querySelector('.navbar');
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
@@ -23,22 +39,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // --- 3. Initial Hero Load Animations ---
-    const heroTexts = document.querySelectorAll('.hero-anim-text');
-    const heroBtns = document.querySelectorAll('.hero-anim-btn');
-    
-    heroTexts.forEach((el, index) => {
-        el.classList.add('reveal-base');
-        setTimeout(() => el.classList.add('reveal-active'), 100 + (index * 200));
-    });
+    // --- 4. Hero Animations Function ---
+    function triggerHeroAnimations() {
+        const heroTexts = document.querySelectorAll('.hero-anim-text');
+        const heroBtns = document.querySelectorAll('.hero-anim-btn');
+        
+        heroTexts.forEach((el, index) => {
+            el.classList.add('reveal-base');
+            setTimeout(() => el.classList.add('reveal-active'), 100 + (index * 200));
+        });
 
-    heroBtns.forEach((btn, index) => {
-        btn.classList.add('reveal-base');
-        btn.style.transitionDelay = `${0.6 + (index * 0.15)}s`;
-        setTimeout(() => btn.classList.add('reveal-active'), 100);
-    });
+        heroBtns.forEach((btn, index) => {
+            btn.classList.add('reveal-base');
+            btn.style.transitionDelay = `${0.6 + (index * 0.15)}s`;
+            setTimeout(() => btn.classList.add('reveal-active'), 100);
+        });
+    }
 
-    // --- 4. Scroll Reveal via IntersectionObserver ---
+    // --- 5. Scroll Reveal via IntersectionObserver ---
     const observerOptions = {
         threshold: 0.12,
         rootMargin: "0px 0px -60px 0px"
@@ -68,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // Apply observers to sections
+    // Apply observers to sections (these wait for scroll, so they work perfectly with preloader)
     applyStaggerObserver('.section-title, .about-subtitle, .contact-form, .info-box');
     applyStaggerObserver('.grid-3, .grid-4', true);
 });
