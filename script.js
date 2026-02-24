@@ -1,23 +1,7 @@
-// Ensure script waits for full page load as requested
-window.addEventListener('load', () => {
-    
-    // --- 1. Preloader Logic (5 Second Duration) ---
-    setTimeout(() => {
-        const preloader = document.getElementById('preloader');
-        
-        // Hide preloader
-        preloader.classList.add('hide');
-        
-        // Enable scrolling and add 'loaded' class
-        document.body.classList.remove('no-scroll');
-        document.body.classList.add('loaded');
-        
-        // Trigger initial hero animations *after* the preloader reveals the site
-        triggerHeroAnimations();
-        
-    }, 5000); // Exactly 5 seconds
+// --- 1. General Site Setup (Runs Immediately on DOM Load) ---
+document.addEventListener('DOMContentLoaded', () => {
 
-    // --- 2. Video Autoplay Fallback ---
+    // Setup Video Autoplay Fallback
     const heroVideo = document.getElementById('heroVideo');
     if (heroVideo) {
         heroVideo.play().catch(error => {
@@ -25,7 +9,7 @@ window.addEventListener('load', () => {
         });
     }
 
-    // --- 3. Navbar Scroll Transition ---
+    // Navbar Scroll Transition setup
     const nav = document.querySelector('.navbar');
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
@@ -39,24 +23,14 @@ window.addEventListener('load', () => {
         }
     });
 
-    // --- 4. Hero Animations Function ---
-    function triggerHeroAnimations() {
-        const heroTexts = document.querySelectorAll('.hero-anim-text');
-        const heroBtns = document.querySelectorAll('.hero-anim-btn');
-        
-        heroTexts.forEach((el, index) => {
-            el.classList.add('reveal-base');
-            setTimeout(() => el.classList.add('reveal-active'), 100 + (index * 200));
-        });
+    // Prepare Hero Texts/Buttons to be hidden initially
+    const heroTexts = document.querySelectorAll('.hero-anim-text');
+    const heroBtns = document.querySelectorAll('.hero-anim-btn');
+    
+    heroTexts.forEach(el => el.classList.add('reveal-base'));
+    heroBtns.forEach(btn => btn.classList.add('reveal-base'));
 
-        heroBtns.forEach((btn, index) => {
-            btn.classList.add('reveal-base');
-            btn.style.transitionDelay = `${0.6 + (index * 0.15)}s`;
-            setTimeout(() => btn.classList.add('reveal-active'), 100);
-        });
-    }
-
-    // --- 5. Scroll Reveal via IntersectionObserver ---
+    // Scroll Reveal setup via IntersectionObserver (For rest of the site)
     const observerOptions = {
         threshold: 0.12,
         rootMargin: "0px 0px -60px 0px"
@@ -86,7 +60,39 @@ window.addEventListener('load', () => {
         });
     };
 
-    // Apply observers to sections (these wait for scroll, so they work perfectly with preloader)
+    // Apply observers to site sections below the fold
     applyStaggerObserver('.section-title, .about-subtitle, .contact-form, .info-box');
     applyStaggerObserver('.grid-3, .grid-4', true);
+});
+
+// --- 2. Preloader Sequence (Runs on Window Load to account for resources) ---
+window.addEventListener('load', () => {
+    
+    // 5 Second Timer Duration
+    setTimeout(() => {
+        const preloader = document.getElementById('preloader');
+        
+        // Hide preloader
+        if (preloader) {
+            preloader.classList.add('hide');
+        }
+        
+        // Enable scrolling and add 'loaded' state
+        document.body.classList.remove('no-scroll');
+        document.body.classList.add('loaded');
+        
+        // Trigger initial hero animations *after* the preloader reveals the site
+        const heroTexts = document.querySelectorAll('.hero-anim-text');
+        const heroBtns = document.querySelectorAll('.hero-anim-btn');
+        
+        heroTexts.forEach((el, index) => {
+            setTimeout(() => el.classList.add('reveal-active'), 100 + (index * 200));
+        });
+
+        heroBtns.forEach((btn, index) => {
+            btn.style.transitionDelay = `${0.6 + (index * 0.15)}s`;
+            setTimeout(() => btn.classList.add('reveal-active'), 100);
+        });
+        
+    }, 5000); // Exactly 5 seconds
 });
