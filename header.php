@@ -28,6 +28,7 @@
         <div class="container nav-wrapper">
             <a href="index.php" class="logo">⛪ Nyamata SDA Church</a>
             <ul class="nav-links">
+                <li><a href="index.php" class="<?php echo ($current_page == 'index.php') ? 'active' : ''; ?>">Home</a></li>
                 <li><a href="ministries.php" class="<?php echo ($current_page == 'ministries.php') ? 'active' : ''; ?>">Ministries</a></li>
                 <li><a href="sermons.php" class="<?php echo ($current_page == 'sermons.php') ? 'active' : ''; ?>">Sermons</a></li>
                 <li><a href="events.php" class="<?php echo ($current_page == 'events.php') ? 'active' : ''; ?>">Events</a></li>
