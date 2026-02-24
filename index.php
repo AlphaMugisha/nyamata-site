@@ -15,6 +15,13 @@
                 <div class="preloader-logo">⛪</div>
             </div>
             <div class="preloader-text">Nyamata SDA Church</div>
+            
+            <div class="preloader-progress-wrapper">
+                <div class="preloader-progress-track">
+                    <div class="preloader-progress-fill"></div>
+                </div>
+            </div>
+            
         </div>
     </div>
 
