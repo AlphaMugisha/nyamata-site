@@ -30,7 +30,7 @@
                     <li><a href="sermons.php">Sermons</a></li>
                     <li><a href="events.php">Events</a></li>
                     <li><a href="contact.php">Contact</a></li>
-                    <li><a href="events.php#visit" style="color: var(--gold); font-weight: 600;">Plan a Visit</a></li>
+                    <li><a href="contact.php" style="color: var(--gold); font-weight: 600;">Plan a Visit</a></li>
                 </ul>
             </div>
 

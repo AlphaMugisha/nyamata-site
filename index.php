@@ -105,7 +105,7 @@
                 Whether you are seeking a new church home, exploring faith for the first time, or just passing through the beautiful Bugesera district, our doors and hearts are open to you. We believe in building a vibrant community where everyone can experience the transformative love of Christ and discover their God-given purpose.
             </p>
             <p style="font-family: serif; font-size: 1.5rem; color: var(--gold); font-style: italic; font-weight: 600;">
-                - Pastor's Name
+                - Samuel K. Mugenzi, Lead Pastor
             </p>
         </div>
         <div class="reveal-base" style="border-radius: 8px; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.1);">
