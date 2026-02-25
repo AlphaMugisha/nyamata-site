@@ -32,6 +32,7 @@
                 <li><a href="ministries.php" class="<?php echo ($current_page == 'ministries.php') ? 'active' : ''; ?>">Ministries</a></li>
                 <li><a href="sermons.php" class="<?php echo ($current_page == 'sermons.php') ? 'active' : ''; ?>">Sermons</a></li>
                 <li><a href="events.php" class="<?php echo ($current_page == 'events.php') ? 'active' : ''; ?>">Events</a></li>
+                <li><a href="gallery.php" class="<?php echo ($current_page == 'gallery.php') ? 'active' : ''; ?>">Gallery</a></li>
                 <li><a href="contact.php" class="<?php echo ($current_page == 'contact.php') ? 'active' : ''; ?>">Contact</a></li>
             </ul>
             <div class="nav-btns">
