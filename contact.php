@@ -1,11 +1,11 @@
 <?php include 'header.php'; ?>
 
 <header class="hero" style="height: 50vh;">
-    <div style="position: absolute; top:0; left:0; width:100%; height:100%; background: url('https://images.unsplash.com/photo-1510590337019-5ef8d3d32116?auto=format&fit=crop&q=80&w=1500') center/cover; z-index:0;"></div>
+    <div style="position: absolute; top:0; left:0; width:100%; height:100%; background: url('outreach.jpg') center/cover; z-index:0;"></div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
-        <h1 class="hero-anim-text">GET IN TOUCH</h1>
-        <p class="hero-anim-text">We'd love to hear from you</p>
+        <h1 class="hero-anim-text">GET IN TOUCH WITH NYAMATA CHURCH</h1>
+        <p class="hero-anim-text">We'd love to hear from you, and what u say will be kept confidential and used to serve you better.</p>
     </div>
 </header>
 
