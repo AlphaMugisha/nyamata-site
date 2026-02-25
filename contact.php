@@ -4,8 +4,8 @@
     <div style="position: absolute; top:0; left:0; width:100%; height:100%; background: url('outreach.jpg') center/cover; z-index:0;"></div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
-        <h1 class="hero-anim-text">GET IN TOUCH WITH NYAMATA CHURCH</h1>
-        <p class="hero-anim-text">We'd love to hear from you, and what u say will be kept confidential and used to serve you better.</p>
+        <h1 class="hero-anim-text">GET IN TOUCH</h1>
+        <p class="hero-anim-text">We'd love to hear from you</p>
     </div>
 </header>
 
