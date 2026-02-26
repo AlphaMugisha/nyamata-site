@@ -159,7 +159,7 @@
                     <img src="'.$image.'" alt="Gallery Image" loading="lazy">
                     <div class="overlay">
                         <div class="overlay-text">
-                            <h3>Sacred Moment</h3>
+                            <h3>One Family</h3>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                         </div>
                     </div>
