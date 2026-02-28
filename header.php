@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<link rel="icon" type="image/png" href="31.png">
+<link rel="icon" type="image/svg+xml" href="logo.svg">
 <body class="no-scroll">
 
     <div id="preloader" class="preloader">
