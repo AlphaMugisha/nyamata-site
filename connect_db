@@ -1,0 +1,18 @@
+<?php
+// Database configuration variables
+$host = "localhost";
+$user = "root";      // Default username for XAMPP
+$pass = "";          // Default password for XAMPP is usually empty
+$dbname = "nyamata_sda_db";
+
+// Create the connection
+$conn = mysqli_connect($host, $user, $pass, $dbname);
+
+// Check if the connection was successful
+if (!$conn) {
+    die("Database Connection Failed: " . mysqli_connect_error());
+}
+
+// Set the character set to ensure text (like French/Kinyarwanda accents) displays correctly
+mysqli_set_charset($conn, "utf8mb4");
+?>

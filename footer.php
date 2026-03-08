@@ -73,6 +73,7 @@
                     <li><a href="events.php">Events</a></li>
                     <li><a href="contact.php">Contact</a></li>
                     <li><a href="contact.php" style="color: var(--gold); font-weight: 600;">Plan a Visit</a></li>
+                    <li><a href="admin/login.php" style="color: var(--accent-green);"><i class="fas fa-lock"></i> Admin Portal</a></li>
                 </ul>
             </div>
 

@@ -109,7 +109,7 @@
             </p>
         </div>
         <div class="reveal-base" style="border-radius: 8px; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.1);">
-            <img src="1.jpeg" alt="Pastor Welcoming" style="width: 100%; display: block; object-fit: cover; height: 100%;">
+            <img src="images/1.jpeg" alt="Pastor Welcoming" style="width: 100%; display: block; object-fit: cover; height: 100%;">
         </div>
     </div>
 </section>
@@ -147,7 +147,7 @@
         <p class="reveal-base" style="color: rgba(255,255,255,0.8); margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">Catch up on the latest powerful sermon from our pastoral team.</p>
         
         <div class="service-card clickable-card reveal-base" onclick="window.location.href='sermons.php'" style="height: 350px; max-width: 800px; margin: 0 auto;">
-            <img src="2.jpeg" alt="Latest Sermon">
+            <img src="images/2.jpeg" alt="Latest Sermon">
             <div class="service-info">
                 <h4 style="font-size: 2rem;">Walking in His Love</h4>
                 <p style="font-size: 1.1rem; margin-bottom: 15px;">Pastor John Doe • Last Sabbath</p>
@@ -162,19 +162,19 @@
         <h2 class="section-title reveal-base" style="text-align: center; margin-bottom: 40px;">GET INVOLVED</h2>
         <div class="grid-4">
             <div class="m-card clickable-card reveal-base" onclick="window.location.href='ministries.php'">
-                <div class="m-img" style="background-image: url('3.jpeg')"></div>
+                <div class="m-img" style="background-image: url('images/3.jpeg')"></div>
                 <div class="m-title">Children Ministry</div>
             </div>
             <div class="m-card clickable-card reveal-base" style="transition-delay: 0.1s;" onclick="window.location.href='ministries.php'">
-                <div class="m-img" style="background-image: url('4.jpeg')"></div>
+                <div class="m-img" style="background-image: url('images/4.jpeg')"></div>
                 <div class="m-title">Youth Ministry</div>
             </div>
             <div class="m-card clickable-card reveal-base" style="transition-delay: 0.2s;" onclick="window.location.href='ministries.php'">
-                <div class="m-img" style="background-image: url('5.jpeg')"></div>
+                <div class="m-img" style="background-image: url('images/5.jpeg')"></div>
                 <div class="m-title">Women Ministry</div>
             </div>
             <div class="m-card clickable-card reveal-base" style="transition-delay: 0.3s;" onclick="window.location.href='ministries.php'">
-                <div class="m-img" style="background-image: url('6.jpeg')"></div>
+                <div class="m-img" style="background-image: url('images/6.jpeg')"></div>
                 <div class="m-title">Men Ministry</div>
             </div>
         </div>
