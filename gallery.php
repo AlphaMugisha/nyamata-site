@@ -148,7 +148,9 @@
 
     <main class="image-grid">
         <?php
-        $imageTypes = '{*.jpg,*.JPG,*.jpeg,*.JPEG,*.png,*.PNG,*.webp}';
+        // Pointing to the images folder
+        $directory = 'images/'; 
+        $imageTypes = $directory . '{*.jpg,*.JPG,*.jpeg,*.JPEG,*.png,*.PNG,*.webp}';
         $images = glob($imageTypes, GLOB_BRACE);
 
         if ($images) {
@@ -170,7 +172,6 @@
         }
         ?>
     </main>
-
 
     <?php include 'footer.php'; ?>
 
