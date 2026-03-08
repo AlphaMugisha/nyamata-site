@@ -5,7 +5,6 @@ session_start();
 // Jump up one folder to connect to your existing Nyamata database
 require_once '../connect_db.php';
 
-// Temporary bypass for testing the UI (Remove this later when we build login.php)
 if (!isset($_SESSION['admin_id'])) {
     header("Location: login.php");
     exit;

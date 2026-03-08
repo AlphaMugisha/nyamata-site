@@ -1,242 +1,145 @@
-<?php include 'header.php'; ?>
+<?php 
+include 'header.php'; 
+include 'connect_db.php'; 
+
+// Fetch ALL Content into an easy-to-use array
+$res = mysqli_query($conn, "SELECT * FROM site_content");
+$site = [];
+while($row = mysqli_fetch_assoc($res)) { $site[$row['section_name']] = $row; }
+
+// Fetch the single Latest Sermon
+$sermon_query = mysqli_query($conn, "SELECT * FROM sermons ORDER BY id DESC LIMIT 1");
+$latest_sermon = mysqli_fetch_assoc($sermon_query);
+?>
 
 <style>
-    .reveal-base {
-        opacity: 0;
-        transform: translateY(40px);
-        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        will-change: opacity, visibility;
-    }
-    .reveal-base.active {
-        opacity: 1;
-        transform: translateY(0);
-    }
-/* Branded Hero Overlay */
-.hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* A deep navy gradient that matches your Blue buttons */
-    background: linear-gradient(135deg, rgba(29, 53, 87, 0.7) 0%, rgba(10, 25, 47, 0.6) 100%);
-    z-index: 2;
-}
-
-/* Branded Text Styling */
-.hero-content h1.hero-anim-text {
-    color: #ffffff;
-    font-size: 4rem;
-    font-weight: 800;
-    text-shadow: 2px 4px 10px rgba(0, 0, 0, 0.3);
-    opacity: 1 !important;
-    visibility: visible !important;
-    margin-bottom: 5px;
-}
-
-.hero-content p.hero-anim-text {
-    color: var(--gold); /* Uses your existing Gold color variable */
-    font-size: 1.5rem;
-    font-weight: 500;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    opacity: 1 !important;
-    visibility: visible !important;
-}
-
-/* Button positioning fix */
-.hero-actions {
-    position: relative;
-    z-index: 4;
-    margin-top: 30px;
-}
+    :root { --gold: #b8860b; --navy: #1d3557; }
+    .reveal-base { opacity: 0; transform: translateY(40px); transition: 0.8s ease-out; }
+    .reveal-base.active { opacity: 1; transform: translateY(0); }
+    
+    .section-title { font-size: 2.5rem; font-weight: 800; color: var(--navy); margin-bottom: 20px; position: relative; }
+    .section-title::after { content: ''; display: block; width: 50px; height: 5px; background: var(--gold); margin-top: 10px; }
+    
+    .info-card { background: white; padding: 30px; border-radius: 15px; border: 1px solid #eee; transition: 0.4s; }
+    .info-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.05); border-color: var(--gold); }
+    
+    .btn-blue-glass { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); color: white; padding: 15px 30px; border-radius: 50px; text-decoration: none; font-weight: bold; }
+    .btn-blue-glass:hover { background: white; color: var(--navy); }
 </style>
 
-<header id="home" class="hero">
-    <video autoplay loop muted playsinline class="hero-video" id="heroVideo">
-        <source src="video.mp4" type="video/mp4">
-        <img src="https://images.unsplash.com/photo-1510590337019-5ef8d3d32116?auto=format&fit=crop&q=80&w=1500" alt="Worship Background">
+<header class="hero" style="height: 100vh; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+    <video autoplay loop muted playsinline style="position: absolute; width: 100%; height: 100%; object-fit: cover; z-index: 1;">
+        <source src="<?= $site['hero']['image_path'] ?>" type="video/mp4">
     </video>
-    
-    <div class="hero-overlay"></div>
-    
-    <div class="hero-content">
-        <h1 class="hero-anim-text">WELCOME HOME</h1>
-        <p class="hero-anim-text">Join us this Sabbath</p>
-        <div class="hero-actions">
-            <a href="events.php#visit" class="btn btn-gold hero-anim-btn">Plan Your Visit</a>
-            <a href="sermons.php" class="btn btn-blue-glass hero-anim-btn">Watch Sermons</a>
+    <div style="position: absolute; width: 100%; height: 100%; background: rgba(10, 37, 64, 0.6); z-index: 2;"></div>
+    <div style="position: relative; z-index: 3; text-align: center; color: white;">
+        <h1 style="font-size: 5rem; font-weight: 900; margin: 0;"><?= $site['hero']['title'] ?></h1>
+        <p style="font-size: 1.5rem; color: var(--gold); letter-spacing: 3px;"><?= $site['hero']['content'] ?></p>
+        <div style="margin-top: 30px;">
+            <a href="events.php" class="btn btn-gold">Plan Your Visit</a>
+            <a href="sermons.php" class="btn-blue-glass">Watch Sermons</a>
         </div>
     </div>
 </header>
 
-<section id="about" class="about-section">
+<section id="about" style="padding: 100px 0; background: white;">
     <div class="container">
         <h2 class="section-title">ABOUT NYAMATA SDA CHURCH</h2>
-        <p class="about-subtitle">We exist to love God, love people, and prepare for the soon return of Jesus Christ.</p>
-        <div class="grid-3">
-            <div class="info-card clickable-card reveal-base" onclick="window.location.href='ministries.php'">
-                <h3>Our Mission</h3>
-                <p>To spread the everlasting gospel and prepare a people for the second coming.</p>
-                <span style="color: var(--gold); font-weight:bold;">Learn More</span>
-            </div>
-            <div class="info-card clickable-card reveal-base" style="transition-delay: 0.1s;" onclick="window.location.href='ministries.php'">
-                <h3>Our Beliefs</h3>
-                <p>Rooted in the 28 Fundamental Beliefs of the Seventh-day Adventist Church.</p>
-                <span style="color: var(--gold); font-weight:bold;">Learn More</span>
-            </div>
-            <div class="info-card clickable-card reveal-base" style="transition-delay: 0.2s;" onclick="window.location.href='events.php'">
-                <h3>Join Us</h3>
-                <p>A global community of believers waiting for the blessed hope of Jesus.</p>
-                <span class="btn btn-blue btn-full" style="margin-top:15px">Plan A Visit</span>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="about-section" style="background: var(--light-gray); padding: 100px 0;">
-    <div class="container contact-grid" style="align-items: center;">
-        <div class="reveal-base" style="text-align: left;">
-            <h2 class="section-title" style="margin-bottom: 20px;">A MESSAGE FROM OUR PASTOR</h2>
-            <p style="font-size: 1.1rem; margin-bottom: 15px; color: #555; line-height: 1.8;">
-                Welcome to Nyamata SDA Church! We are so thrilled that you've taken the time to visit us online.
-            </p>
-            <p style="font-size: 1.1rem; margin-bottom: 25px; color: #555; line-height: 1.8;">
-                Whether you are seeking a new church home, exploring faith for the first time, or just passing through the beautiful Bugesera district, our doors and hearts are open to you. We believe in building a vibrant community where everyone can experience the transformative love of Christ and discover their God-given purpose.
-            </p>
-            <p style="font-family: serif; font-size: 1.5rem; color: var(--gold); font-style: italic; font-weight: 600;">
-                - Samuel K. Mugenzi, Lead Pastor
-            </p>
-        </div>
-        <div class="reveal-base" style="border-radius: 8px; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.1);">
-            <img src="images/1.jpeg" alt="Pastor Welcoming" style="width: 100%; display: block; object-fit: cover; height: 100%;">
-        </div>
-    </div>
-</section>
-
-<section class="about-section" style="background: white; padding: 80px 0;">
-    <div class="container">
-        <h2 class="section-title reveal-base">OUR ADVENTIST FAITH</h2>
-        <p class="about-subtitle reveal-base" style="text-align: center; margin-bottom: 40px;">Rooted in scripture, focused on holistic living, and waiting for His return.</p>
-        <div class="grid-3">
+        <div class="grid-3" style="margin-top: 40px;">
             <div class="info-card reveal-base">
-                <h3 style="color: var(--gold);">Core Beliefs</h3>
-                <p style="margin-bottom: 10px;"><strong>The Sabbath:</strong> Observance of the seventh-day Sabbath (Saturday) as a day of rest and worship.</p>
-                <p style="margin-bottom: 10px;"><strong>The Second Coming:</strong> A strong focus on the imminent, literal, and visible return of Jesus.</p>
-                <p><strong>The Bible:</strong> The belief that the Bible is the ultimate, inspired authority.</p>
+                <h3><?= $site['about_mission']['title'] ?></h3>
+                <p><?= $site['about_mission']['content'] ?></p>
             </div>
             <div class="info-card reveal-base" style="transition-delay: 0.1s;">
-                <h3 style="color: var(--gold);">Lifestyle & Health</h3>
-                <p style="margin-bottom: 10px;"><strong>Holistic Well-being:</strong> Promoting health through a plant-based diet, regular exercise, and rest.</p>
-                <p style="margin-bottom: 10px;"><strong>Abstinence:</strong> Avoiding alcohol, tobacco, and illicit drugs to honor the body.</p>
-                <p><strong>Restoration:</strong> Dedicated to healing the whole person—mind, body, and spirit.</p>
+                <h3><?= $site['about_beliefs']['title'] ?></h3>
+                <p><?= $site['about_beliefs']['content'] ?></p>
             </div>
             <div class="info-card reveal-base" style="transition-delay: 0.2s;">
-                <h3 style="color: var(--gold);">Mission & Values</h3>
-                <p style="margin-bottom: 10px;"><strong>Global Service:</strong> Running one of the largest Protestant healthcare and education systems worldwide.</p>
-                <p style="margin-bottom: 10px;"><strong>Community:</strong> Sharing a message of hope, healing, and restoration with the Nyamata district.</p>
-                <p><strong>Growth:</strong> Encouraging spiritual growth through prayer and continuous Bible study.</p>
+                <h3><?= $site['about_join']['title'] ?></h3>
+                <p><?= $site['about_join']['content'] ?></p>
             </div>
         </div>
     </div>
 </section>
 
-<section class="service-times">
-    <div class="container" style="text-align: center;">
-        <h2 class="section-title reveal-base" style="color: white; margin-bottom: 20px;">LATEST MESSAGE</h2>
-        <p class="reveal-base" style="color: rgba(255,255,255,0.8); margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">Catch up on the latest powerful sermon from our pastoral team.</p>
-        
-        <div class="service-card clickable-card reveal-base" onclick="window.location.href='sermons.php'" style="height: 350px; max-width: 800px; margin: 0 auto;">
-            <img src="images/2.jpeg" alt="Latest Sermon">
-            <div class="service-info">
-                <h4 style="font-size: 2rem;">Walking in His Love</h4>
-                <p style="font-size: 1.1rem; margin-bottom: 15px;">Pastor John Doe • Last Sabbath</p>
-                <span class="btn btn-gold">Watch Sermon</span>
-            </div>
+<section style="padding: 100px 0; background: #fafafa;">
+    <div class="container" style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; align-items: center;">
+        <div class="reveal-base">
+            <h2 class="section-title"><?= $site['pastor_message']['title'] ?></h2>
+            <p style="font-size: 1.1rem; line-height: 1.8; color: #444;"><?= nl2br($site['pastor_message']['content']) ?></p>
+        </div>
+        <div class="reveal-base" style="position: relative;">
+            <div style="position: absolute; width: 100%; height: 100%; border: 3px solid var(--gold); top: 20px; left: 20px; border-radius: 15px;"></div>
+            <img src="<?= $site['pastor_message']['image_path'] ?>" style="width: 100%; border-radius: 15px; position: relative; z-index: 2; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
         </div>
     </div>
 </section>
 
-<section id="ministries" class="ministries">
+<section style="padding: 100px 0; background: white;">
     <div class="container">
-        <h2 class="section-title reveal-base" style="text-align: center; margin-bottom: 40px;">GET INVOLVED</h2>
-        <div class="grid-4">
-            <div class="m-card clickable-card reveal-base" onclick="window.location.href='ministries.php'">
-                <div class="m-img" style="background-image: url('images/3.jpeg')"></div>
-                <div class="m-title">Children Ministry</div>
+        <h2 class="section-title reveal-base"><?= $site['faith_main']['title'] ?></h2>
+        <p class="reveal-base" style="margin-bottom: 40px; font-size: 1.2rem; color: #666;"><?= $site['faith_main']['content'] ?></p>
+        <div class="grid-3">
+            <div class="info-card reveal-base">
+                <h3 style="color: var(--gold);"><?= $site['faith_core']['title'] ?></h3>
+                <p><?= nl2br($site['faith_core']['content']) ?></p>
             </div>
-            <div class="m-card clickable-card reveal-base" style="transition-delay: 0.1s;" onclick="window.location.href='ministries.php'">
-                <div class="m-img" style="background-image: url('images/4.jpeg')"></div>
-                <div class="m-title">Youth Ministry</div>
+            <div class="info-card reveal-base" style="transition-delay: 0.1s;">
+                <h3 style="color: var(--gold);"><?= $site['faith_lifestyle']['title'] ?></h3>
+                <p><?= nl2br($site['faith_lifestyle']['content']) ?></p>
             </div>
-            <div class="m-card clickable-card reveal-base" style="transition-delay: 0.2s;" onclick="window.location.href='ministries.php'">
-                <div class="m-img" style="background-image: url('images/5.jpeg')"></div>
-                <div class="m-title">Women Ministry</div>
+            <div class="info-card reveal-base" style="transition-delay: 0.2s;">
+                <h3 style="color: var(--gold);"><?= $site['faith_mission']['title'] ?></h3>
+                <p><?= nl2br($site['faith_mission']['content']) ?></p>
             </div>
-            <div class="m-card clickable-card reveal-base" style="transition-delay: 0.3s;" onclick="window.location.href='ministries.php'">
-                <div class="m-img" style="background-image: url('images/6.jpeg')"></div>
-                <div class="m-title">Men Ministry</div>
-            </div>
-        </div>
-        <div style="text-align: center; margin-top: 40px;" class="reveal-base">
-            <a href="ministries.php" class="btn btn-blue">View All Ministries</a>
         </div>
     </div>
 </section>
 
-<section class="about-section" style="background: white;">
+<section style="padding: 100px 0; background: var(--navy); text-align: center; color: white;">
+    <div class="container">
+        <h2 class="section-title reveal-base" style="color: white; margin: 0 auto 40px;">LATEST MESSAGE</h2>
+        <div class="reveal-base" style="max-width: 800px; margin: 0 auto; background: rgba(255,255,255,0.05); padding: 20px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1);">
+            <img src="<?= $latest_sermon['thumbnail_path'] ?>" style="width: 100%; border-radius: 10px; margin-bottom: 20px;">
+            <h4 style="font-size: 2rem; margin: 0;"><?= $latest_sermon['title'] ?></h4>
+            <p style="color: var(--gold);"><?= $latest_sermon['preacher'] ?> • <?= $latest_sermon['date_preached'] ?></p>
+            <a href="sermons.php" class="btn btn-gold">Watch Sermon</a>
+        </div>
+    </div>
+</section>
+
+<section style="padding: 100px 0; background: white;">
     <div class="container">
         <h2 class="section-title reveal-base">UPCOMING EVENTS</h2>
         <div class="grid-3" style="margin-top: 40px;">
-            <div class="info-card clickable-card reveal-base" onclick="window.location.href='events.php'">
-                <h3 style="color: var(--gold);">Prayer Week</h3>
-                <p><strong>Date:</strong> Next Sunday<br><strong>Time:</strong> 6:00 PM</p>
-                <p style="margin-top:10px;">Join us for a powerful week of seeking God's face.</p>
-            </div>
-            <div class="info-card clickable-card reveal-base" style="transition-delay: 0.1s;" onclick="window.location.href='events.php'">
-                <h3 style="color: var(--gold);">Youth Camp</h3>
-                <p><strong>Date:</strong> August 15-20<br><strong>Time:</strong> All Day</p>
-                <p style="margin-top:10px;">Annual youth retreat for spiritual growth and fellowship.</p>
-            </div>
-            <div class="info-card clickable-card reveal-base" style="transition-delay: 0.2s;" onclick="window.location.href='events.php'">
-                <h3 style="color: var(--gold);">Community Outreach</h3>
-                <p><strong>Date:</strong> Last Sabbath<br><strong>Time:</strong> 2:00 PM</p>
-                <p style="margin-top:10px;">Serving our local Nyamata community with love.</p>
-            </div>
+            <?php
+            $ev_res = mysqli_query($conn, "SELECT * FROM events ORDER BY id DESC LIMIT 3");
+            while($e = mysqli_fetch_assoc($ev_res)): ?>
+                <div class="info-card reveal-base" onclick="window.location.href='events.php'">
+                    <h3 style="color: var(--gold);"><?= $e['title'] ?></h3>
+                    <p><strong><?= $e['event_date'] ?></strong> | <?= $e['event_time'] ?></p>
+                    <p style="color: #666; margin-top: 10px;"><?= $e['description'] ?></p>
+                </div>
+            <?php endwhile; ?>
         </div>
     </div>
 </section>
 
-<section class="service-times" style="text-align: center; padding: 100px 0;">
+<section style="padding: 100px 0; background: #fafafa; text-align: center;">
     <div class="container reveal-base">
-        <h2 class="section-title" style="color: white; margin-bottom: 20px;">WORSHIP THROUGH GIVING</h2>
-        <p style="color: rgba(255,255,255,0.8); margin-bottom: 35px; max-width: 650px; margin-left: auto; margin-right: auto; font-size: 1.15rem; line-height: 1.6;">
-            Your generosity helps us continue our mission, support our growing ministries, and serve the surrounding community. Thank you for partnering with us.
+        <h2 class="section-title" style="margin: 0 auto 20px;"><?= $site['giving']['title'] ?></h2>
+        <p style="max-width: 650px; margin: 0 auto 40px; font-size: 1.15rem; line-height: 1.6; color: #555;">
+            <?= $site['giving']['content'] ?>
         </p>
-        <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
-            <a href="#" class="btn btn-gold" style="font-size: 1.1rem; padding: 15px 35px;">Give Online</a>
-            <a href="contact.php" class="btn btn-blue-glass" style="font-size: 1.1rem; padding: 15px 35px;">Other Ways to Give</a>
-        </div>
+        <a href="contact.php" class="btn btn-gold" style="padding: 15px 40px; font-size: 1.1rem;">Giving Options</a>
     </div>
 </section>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    // Optional: Unobserve after animating so it only animates once
-                    observer.unobserve(entry.target); 
-                }
-            });
-        }, {
-            threshold: 0.1 // Triggers when 10% of the element is visible
-        });
-
-        const hiddenElements = document.querySelectorAll('.reveal-base');
-        hiddenElements.forEach((el) => observer.observe(el));
-    });
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('active'); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal-base').forEach(el => observer.observe(el));
 </script>
 
 <?php include 'footer.php'; ?>
